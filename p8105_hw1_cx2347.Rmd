@@ -18,8 +18,39 @@ Important variables in the dataset inlude `r variable.names(early_january_weathe
 The dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.
 The mean temperature is `r round(mean(early_january_weather$temp),2)`.
 
-```{r plot, echo=FALSE}
+```{r problem1, echo=FALSE}
 ggplot(early_january_weather, aes(x=time_hour, y=temp, color=humid))+geom_point()
 ggsave("point plot.pdf", height=4, width=6)
 ```
+The scatter plot forms several continuous peaks. The range of the temp is between `r round(min(early_january_weather$temp), 2)` and `r round(max(early_january_weather$temp),2)`. The range of the time_hour drawn in the scatter plot is between `r min(early_january_weather$hour)` and `r max(early_january_weather$hour)`hr. There is an overall ascending trend of temperature shown in the scatter plot. At the summit of each peak, the humidity is usually lower than that at the valley.
 
+## Problem 2
+
+```{r problem2, echo=FALSE, warning = FALSE}
+df <- 
+  tibble(
+    vec.num=rnorm(10),
+    vec.log=(vec.num>0),
+    vec.char=c("a","b","c","d","e","f","g","h","i","k"),
+    vec.fac=factor(c("low","low","low","mid","mid","mid","mid","high","high","high"))
+  )
+
+mean(pull(df, vec.num))
+mean(pull(df, vec.log))
+mean(pull(df, vec.char))
+mean(pull(df, vec.fac))
+
+```
+
+The mean function works for the vec.num (the random sample of size 10 from a standard Normal distribution) and vec.log (the logical vector indicating whether elements of the sample are greater than 0) but doesn't work for the vec.char (a character vector of length 10) and vec.fac (a factor vector of length 10, with 3 different factor “levels”).
+
+```{r problem2.2, eval=FALSE}
+as.numeric(pull(df, vec.log))
+as.numeric(pull(df, vec.char))
+as.numeric(pull(df, vec.fac))
+```
+The logical vector and the factor vector can be converted to numeric values correctly by the as.numeric() function.
+The character vector cannot be converted to numeric values correctly by the as.numeric() function.
+
+This explains why the means() function works for the logical vector as they are already in a numeric format and why the means() function doesn't work for the character vector as we can't extract numeric values from characters.
+However, it still can't resolve why the means() function doesn't work for the factor vector. We can convert the factor vector into numeric values, but we can't perform the function means() on them.
