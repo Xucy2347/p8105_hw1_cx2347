@@ -19,7 +19,10 @@ The dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_w
 The mean temperature is `r round(mean(early_january_weather$temp),2)`.
 
 ```{r problem1, echo=FALSE}
+# plot the scatter plot
 ggplot(early_january_weather, aes(x=time_hour, y=temp, color=humid))+geom_point()
+
+# save the plot to git
 ggsave("point plot.pdf", height=4, width=6)
 ```
 The scatter plot forms several continuous peaks. The range of the temp is between `r round(min(early_january_weather$temp), 2)` and `r round(max(early_january_weather$temp),2)`. The range of the time_hour drawn in the scatter plot is between `r min(early_january_weather$hour)` and `r max(early_january_weather$hour)`hr. There is an overall ascending trend of temperature shown in the scatter plot. At the summit of each peak, the humidity is usually lower than that at the valley.
@@ -27,6 +30,7 @@ The scatter plot forms several continuous peaks. The range of the temp is betwee
 ## Problem 2
 
 ```{r problem2, echo=FALSE, warning = FALSE}
+# create the table
 df <- 
   tibble(
     vec.num=rnorm(10),
@@ -35,6 +39,7 @@ df <-
     vec.fac=factor(c("low","low","low","mid","mid","mid","mid","high","high","high"))
   )
 
+# get the means of each variable
 mean(pull(df, vec.num))
 mean(pull(df, vec.log))
 mean(pull(df, vec.char))
@@ -45,6 +50,7 @@ mean(pull(df, vec.fac))
 The mean function works for the vec.num (the random sample of size 10 from a standard Normal distribution) and vec.log (the logical vector indicating whether elements of the sample are greater than 0) but doesn't work for the vec.char (a character vector of length 10) and vec.fac (a factor vector of length 10, with 3 different factor “levels”).
 
 ```{r problem2.2, eval=FALSE}
+# trails of converting these values to numeric
 as.numeric(pull(df, vec.log))
 as.numeric(pull(df, vec.char))
 as.numeric(pull(df, vec.fac))

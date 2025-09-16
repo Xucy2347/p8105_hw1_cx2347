@@ -372,8 +372,8 @@ the humidity is usually lower than that at the valley.</p>
 </div>
 <div id="problem-2" class="section level2">
 <h2>Problem 2</h2>
-<pre><code>## [1] 0.06536497</code></pre>
-<pre><code>## [1] 0.5</code></pre>
+<pre><code>## [1] 0.1541579</code></pre>
+<pre><code>## [1] 0.6</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>The mean function works for the vec.num (the random sample of size 10
@@ -382,7 +382,8 @@ indicating whether elements of the sample are greater than 0) but
 doesn’t work for the vec.char (a character vector of length 10) and
 vec.fac (a factor vector of length 10, with 3 different factor
 “levels”).</p>
-<pre class="r"><code>as.numeric(pull(df, vec.log))
+<pre class="r"><code># trails of converting these values to numeric
+as.numeric(pull(df, vec.log))
 as.numeric(pull(df, vec.char))
 as.numeric(pull(df, vec.fac))</code></pre>
 <p>The logical vector and the factor vector can be converted to numeric
