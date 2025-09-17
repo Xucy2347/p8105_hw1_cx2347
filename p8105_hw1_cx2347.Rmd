@@ -47,6 +47,7 @@ x2 = mean(pull(df, vec.log))
 x3 = mean(pull(df, vec.char))
 x4 = mean(pull(df, vec.fac))
 ```
+
 The mean of the numeric vector is `r round(x1, 2)`.\
 The mean of the logical vector is `r round(x2, 2)`.\
 The mean of the character vector is `r x3`.\
